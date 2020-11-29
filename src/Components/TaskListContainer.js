@@ -7,16 +7,13 @@ class TaskListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: [{
-        key: '1606661929799',
-        text: 'Call Plumber',
-        complete: 'false'
-      }]
+      tasks: []
     };
 
     this.addTask = this.addTask.bind(this);
+    this.editTask = this.editTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
-
+    this.markTaskAsComplete = this.markTaskAsComplete.bind(this);
   }
 
   addTask(e) {
@@ -24,7 +21,8 @@ class TaskListContainer extends Component {
       var newTask = {
         text: this._inputElement.value,
         key: Date.now(),
-        complete: false
+        complete: false,
+        editMode: false
       };
 
       this.setState((prevState) => {
@@ -40,7 +38,7 @@ class TaskListContainer extends Component {
     e.preventDefault();
   }
 
-  deleteTask(key){
+  deleteTask(key) {
     var filteredItems = this.state.tasks.filter(function (item) {
       return (item.key !== key);
     });
@@ -49,18 +47,22 @@ class TaskListContainer extends Component {
     });
   }
 
-  editTask(key, newText){
-    var item = this.state.tasks.filter(function (item) {
-      return (item.key == key);
-    });
+  editTask(key, newText) {
+    var taskList = this.state.tasks;
 
-    item.text = newText;
-
-    var filteredItems = this.state.tasks.filter(function (item) {
-      return (item.key !== key);
-    });
+    taskList.find(t => t.key == key).text = newText;
     this.setState({
-      tasks: filteredItems
+      tasks: taskList
+    });
+  }
+
+  markTaskAsComplete(key) {
+    var taskList = this.state.tasks;
+
+    var newState = !taskList.find(t => t.key === key).complete;
+    taskList.find(t => t.key === key).complete = newState;
+    this.setState({
+      tasks: taskList
     });
   }
 
@@ -69,7 +71,7 @@ class TaskListContainer extends Component {
       <div className="TaskListContainer">
         <h1>Todays Tasks</h1>
         <div className="splitScreen">
-          <div className="leftPane"><TaskList tasks={this.state.tasks} delete={this.deleteTask} /></div>
+          <div className="leftPane"><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} editTask={this.editTask}/></div>
           <div className="rightPane"><div className="AddTask">
             <form onSubmit={this.addTask}>
               <input ref={(a) => this._inputElement = a}
