@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import TaskListContainer from './Components/TaskListContainer';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TaskListContainer />
   </React.StrictMode>,
   document.getElementById('root')
 );
