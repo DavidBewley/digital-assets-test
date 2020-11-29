@@ -7,14 +7,19 @@ class TaskList extends Component {
     super(props);
     this.createTasks = this.createTasks.bind(this);
   }
+
   delete(key) {
     this.props.delete(key);
+  }
+
+  markAsComplete(key) {
+    this.props.markAsComplete(key);
   }
 
   createTasks(task) {
     return <li key={task.key}>
       {task.complete.toString()} - {task.text}
-      <button>Mark As Complete</button>
+      <button onClick={() => this.markAsComplete(task.key)}>Mark As Complete</button>
       <button>Edit</button>
       <button onClick={() => this.delete(task.key)}>Delete</button>
     </li>

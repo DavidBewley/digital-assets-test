@@ -16,7 +16,7 @@ class TaskListContainer extends Component {
 
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
-
+    this.markTaskAsComplete = this.markTaskAsComplete.bind(this);
   }
 
   addTask(e) {
@@ -40,7 +40,7 @@ class TaskListContainer extends Component {
     e.preventDefault();
   }
 
-  deleteTask(key){
+  deleteTask(key) {
     var filteredItems = this.state.tasks.filter(function (item) {
       return (item.key !== key);
     });
@@ -49,18 +49,22 @@ class TaskListContainer extends Component {
     });
   }
 
-  editTask(key, newText){
-    var item = this.state.tasks.filter(function (item) {
-      return (item.key == key);
-    });
+  editTask(key, newText) {
+    var taskList = this.state.tasks;
 
-    item.text = newText;
-
-    var filteredItems = this.state.tasks.filter(function (item) {
-      return (item.key !== key);
-    });
+    taskList.find(t => t.key === key).text = newText;
     this.setState({
-      tasks: filteredItems
+      tasks: taskList
+    });
+  }
+
+  markTaskAsComplete(key) {
+    var taskList = this.state.tasks;
+
+    var newState = !taskList.find(t => t.key === key).complete;
+    taskList.find(t => t.key === key).complete = newState;
+    this.setState({
+      tasks: taskList
     });
   }
 
@@ -69,7 +73,7 @@ class TaskListContainer extends Component {
       <div className="TaskListContainer">
         <h1>Todays Tasks</h1>
         <div className="splitScreen">
-          <div className="leftPane"><TaskList tasks={this.state.tasks} delete={this.deleteTask} /></div>
+          <div className="leftPane"><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} /></div>
           <div className="rightPane"><div className="AddTask">
             <form onSubmit={this.addTask}>
               <input ref={(a) => this._inputElement = a}
