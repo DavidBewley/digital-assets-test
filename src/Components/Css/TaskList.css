@@ -13,35 +13,11 @@
     padding: 10px;
 }
 
-.column-status {
-    float: left;
-    display: block;
-    margin-left: 20px;
-    margin-top: 15px;
-    width: 10%;
-}
-
-.column {
-    float: left;
-    width: 80%;
-}
-
-.column-half{
-    float: left;
-    width: 45%;
-}
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
 .box {
     float: left;
-    height: 20px;
-    width: 20px;
-    margin-bottom: 15px;
+    height: 25px;
+    width: 25px;
+    margin-top: 2px;
     border: 1px solid black;
     clear: both;
     border-radius: 100%;
@@ -58,6 +34,38 @@
     border-color: #00FF00;
 }
 
-.task-name {
-    font-size: 30px;
+.icon {
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+table {
+    width: 100%;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+td {
+    vertical-align: top;
+}
+
+.status {
+    width:20%;
+}
+
+.task-text{
+    width: 60%;
+    font-size: 24px;
+}
+
+.buttons{
+    width: 20%;
+}
+
+.edit-name-area{
+    margin-top: 10px;
 }

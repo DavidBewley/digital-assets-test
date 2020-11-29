@@ -11,13 +11,13 @@ class TaskListContainer extends Component {
         complete: false,
         editMode: false,
         key: 1606673603904,
-        text: "1"
+        text: "Call plumber"
       },
       {
         complete: false,
         editMode: false,
         key: 1606673603905,
-        text: "2"
+        text: "Make doctors appointment"
       },]
     };
 

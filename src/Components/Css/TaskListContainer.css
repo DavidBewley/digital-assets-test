@@ -1,14 +1,20 @@
 .TaskListContainer {
   text-align: center;
   color: aliceblue;
-  max-width: 600px;
+  max-width: 720px;
   margin: auto;
 }
 
 button {
   background-color: #DFE6E9;
   border-width: 0px;
-  font-size: 18px;
+  font-size: 24px;
+  min-height: 33px;
   margin-left: 2px;
   margin-right: 2px;
+  min-width: 120px;
+}
+
+input{
+  font-size: 24px;
 }
