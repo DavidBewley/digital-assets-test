@@ -18,3 +18,7 @@ button {
 input{
   font-size: 24px;
 }
+
+.add-task{
+  margin-bottom: 20px;
+}

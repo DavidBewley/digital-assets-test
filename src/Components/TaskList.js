@@ -21,14 +21,19 @@ class TaskList extends Component {
     this.props.markAsComplete(key);
   }
 
+  putTaskInEditMode(key) {
+    this.props.putTaskInEditMode(key);
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.editTask(event.target[0].name, event.target[0].value)
   }
 
   createTasks(task) {
-    var statusBox = this.renderBox(task)
-    var toggle = this.renderCompleteIcon(task)
+    var statusBox = this.renderBox(task);
+    var toggle = this.renderCompleteIcon(task);
+    var editModeRender = this.renderEditMode(task);
     return <div className="task" key={task.key}>
 
       <table class="Table">
@@ -36,17 +41,12 @@ class TaskList extends Component {
           <tr>
             <td className="status" >{statusBox}</td>
             <td className="task-text" >{task.text}</td>
-            <td className="buttons" >{toggle} <FaEdit className="icon" size={28} /> <MdDeleteForever className="icon" size={28} onClick={() => this.delete(task.key)} /></td>
+            <td className="buttons" >{toggle} <FaEdit className="icon" size={28} onClick={() => this.putTaskInEditMode(task.key)}/> <MdDeleteForever className="icon" size={28} onClick={() => this.delete(task.key)} /></td>
           </tr>
         </tbody>
       </table>
 
-      <div className="edit-name-area">
-        <form onSubmit={this.handleSubmit}>
-          <input name={task.key} placeholder={task.text}></input>
-          <button type="submit">Update</button>
-        </form>
-      </div>
+      {editModeRender}
 
     </div>
   }
@@ -63,6 +63,17 @@ class TaskList extends Component {
       return <BsFillDashCircleFill className="icon" size={28} onClick={() => this.markAsComplete(task.key)} />
     }
     return <FaCheck className="icon" size={28} onClick={() => this.markAsComplete(task.key)} />
+  }
+
+  renderEditMode(task){
+    if(task.editMode){
+      return <div className="edit-name-area">
+      <form onSubmit={this.handleSubmit}>
+        <input name={task.key} placeholder={task.text}></input>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+    }
   }
 
   render() {
