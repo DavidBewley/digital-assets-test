@@ -1,3 +1,167 @@
-.hidden { 
-    display:none; 
+
+@media (min-width: 447px) {  
+    .box {
+        float: left !important;
+        height: 25px !important;
+        width: 25px !important;
+        margin-top: 2px !important;
+        border: 1px solid black !important;
+        clear: both !important;
+        border-radius: 100% !important;
+        vertical-align: baseline !important;
+    }
+
+    .status {
+        width:20% !important;
+    }
+    
+    .task-text{
+        width: 50% !important;
+        font-size: 24px !important;
+    }
+    
+    .buttons{
+        width: 30% !important;
+    }
+
+    .icon {
+        margin-left: 1px !important;
+        margin-right: 1px !important;
+        vertical-align: baseline;
+        margin-bottom: 4px;
+    }
+
+    .icon-container {
+        font-size: 28px !important;
+    }
+
+    input{ 
+        width: auto !important;
+    }
+    
+    button{
+        width: auto !important;
+        margin-top: 0px !important;
+    }
+}
+
+@media (min-width: 535px) {
+    .status {
+        width:20% !important;
+    }
+    
+    .task-text{
+        width: 55% !important;
+        font-size: 24px !important;
+    }
+    
+    .buttons{
+        width: 35% !important;
+    }
+} 
+
+.hidden {
+    display: none;
+}
+
+.task {
+    border-color: azure;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    background-color: #636E72;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.box {
+    float: left;
+    height: 25px;
+    width: 25px;
+    margin-top: 2px;
+    border: 1px solid black;
+    clear: both;
+    border-radius: 100%;
+    vertical-align: baseline;
+}
+
+.red {
+    background-color: red;
+    border-color: red;
+}
+
+.green {
+    background-color: #00FF00;
+    border-color: #00FF00;
+}
+
+.icon {
+    margin-left: 0px;
+    margin-right: 0px;
+    vertical-align: middle;
+}
+
+.tick-icon:hover{
+    color: green;
+}
+
+.untick-icon:hover{
+    color: orange;
+}
+
+.edit-icon{
+    margin-left: 5px !important;
+}
+
+.edit-icon:hover{
+    color: orange;
+}
+
+.delete-icon:hover{
+    color: red;
+}
+
+table {
+    width: 100%;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.status {
+    width:20%;
+}
+
+.task-text{
+    width: 50%;
+    font-size: 24px;
+}
+
+.buttons{
+    width: 40%;
+}
+
+.edit-name-area{
+    margin-top: 10px;
+}
+
+.icon-container {
+    font-size: 22px;
+}
+
+input{ 
+    width: 80%;
+}
+
+button{
+    width: 82%;
+    margin-top: 5px;
 }

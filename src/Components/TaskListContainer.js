@@ -7,13 +7,25 @@ class TaskListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: []
+      tasks: [{
+        complete: false,
+        editMode: false,
+        key: 1606673603904,
+        text: "Call plumber"
+      },
+      {
+        complete: false,
+        editMode: false,
+        key: 1606673603905,
+        text: "Make doctors appointment"
+      }]
     };
 
     this.addTask = this.addTask.bind(this);
     this.editTask = this.editTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.markTaskAsComplete = this.markTaskAsComplete.bind(this);
+    this.toggleTaskInEditMode = this.toggleTaskInEditMode.bind(this);
   }
 
   addTask(e) {
@@ -66,22 +78,30 @@ class TaskListContainer extends Component {
     });
   }
 
+  toggleTaskInEditMode(key) {
+    var taskList = this.state.tasks;
+
+    var newState = !taskList.find(t => t.key === key).editMode;
+    taskList.find(t => t.key === key).editMode = newState;
+    this.setState({
+      tasks: taskList
+    });
+  }
+
   render() {
     return (
       <div className="TaskListContainer">
         <h1>Todays Tasks</h1>
-        <div className="splitScreen">
-          <div className="leftPane"><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} editTask={this.editTask}/></div>
-          <div className="rightPane"><div className="AddTask">
-            <form onSubmit={this.addTask}>
-              <input ref={(a) => this._inputElement = a}
-                placeholder="Task Name">
-              </input>
-              <button type="submit">Add</button>
-            </form>
-          </div>
-          </div>
+        <div><div className="add-task">
+          <form onSubmit={this.addTask}>
+            <input ref={(a) => this._inputElement = a}
+              placeholder="Task Name">
+            </input>
+            <button type="submit">Add</button>
+          </form>
         </div>
+        </div>
+        <div><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} editTask={this.editTask} toggleTaskInEditMode={this.toggleTaskInEditMode}/></div>
       </div>
     );
   }
