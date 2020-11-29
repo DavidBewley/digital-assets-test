@@ -16,20 +16,19 @@ class TaskList extends Component {
     this.props.markAsComplete(key);
   }
 
-  // editTask(key, newText) {
-  //   console.log(key);
-  //   console.log(newText);
-  //   this.props.editTask(key, newText);
-  // }
+  handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(event.target[0].value)
+    this.props.editTask(event.target[0].name, event.target[0].value)
+  }
 
   createTasks(task) {
     return <li key={task.key}>
       {task.complete.toString()}
 
-      {task.text}
+      <div>{task.text}</div>
 
       <button onClick={() => this.markAsComplete(task.key)}>Mark As Complete</button>
-      {/* <button onClick={() => this.editTask(task.key, 'New Text')}>Edit</button> */}
       <button onClick={() => this.delete(task.key)}>Delete</button>
 
       <form onSubmit={this.handleSubmit}>
@@ -38,12 +37,6 @@ class TaskList extends Component {
       </form>
 
     </li>
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(event.target[0].value)
-    this.props.editTask(event.target[0].name, event.target[0].value)
   }
 
   render() {
