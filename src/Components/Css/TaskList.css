@@ -1,3 +1,63 @@
-.hidden { 
-    display:none; 
+.hidden {
+    display: none;
+}
+
+.task {
+    border-color: azure;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    background-color: #636E72;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.column-status {
+    float: left;
+    display: block;
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 10%;
+}
+
+.column {
+    float: left;
+    width: 80%;
+}
+
+.column-half{
+    float: left;
+    width: 45%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.box {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    clear: both;
+    border-radius: 100%;
+    vertical-align: baseline;
+}
+
+.red {
+    background-color: red;
+    border-color: red;
+}
+
+.green {
+    background-color: #00FF00;
+    border-color: #00FF00;
+}
+
+.task-name {
+    font-size: 30px;
 }

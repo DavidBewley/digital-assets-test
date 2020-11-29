@@ -23,27 +23,39 @@ class TaskList extends Component {
   }
 
   createTasks(task) {
-    return <li key={task.key}>
-      {task.complete.toString()}
+    var box = this.renderBox(task)
+    return <div className="task" key={task.key}>
+      <div className="row">
+        <div className="column-status">{box}</div>
+        <div className="column task-name">{task.text}</div>
+      </div>
 
-      <div>{task.text}</div>
+      <div className="row">
+        <div className="column-half">
+          <button onClick={() => this.markAsComplete(task.key)}>Mark As Complete</button><button onClick={() => this.delete(task.key)}>Delete</button>
+        </div>
+        <div className="column-half">
+          <form onSubmit={this.handleSubmit}>
+            <input name={task.key} placeholder={task.text}></input>
+            <button type="submit">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  }
 
-      <button onClick={() => this.markAsComplete(task.key)}>Mark As Complete</button>
-      <button onClick={() => this.delete(task.key)}>Delete</button>
-
-      <form onSubmit={this.handleSubmit}>
-        <input name={task.key} placeholder={task.text}></input>
-        <button type="submit">Update</button>
-      </form>
-
-    </li>
+  renderBox(task) {
+    if (task.complete) {
+      return <div className="green box"></div>
+    }
+    return <div className="red box"></div>
   }
 
   render() {
     var taskList = this.props.tasks
     var listTasks = taskList.map(this.createTasks)
     return (
-      <ul>{listTasks}</ul>
+      <div>{listTasks}</div>
     );
   }
 }

@@ -7,7 +7,18 @@ class TaskListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: []
+      tasks: [{
+        complete: false,
+        editMode: false,
+        key: 1606673603904,
+        text: "1"
+      },
+      {
+        complete: false,
+        editMode: false,
+        key: 1606673603905,
+        text: "2"
+      },]
     };
 
     this.addTask = this.addTask.bind(this);
@@ -71,7 +82,6 @@ class TaskListContainer extends Component {
       <div className="TaskListContainer">
         <h1>Todays Tasks</h1>
         <div className="splitScreen">
-          <div className="leftPane"><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} editTask={this.editTask}/></div>
           <div className="rightPane"><div className="AddTask">
             <form onSubmit={this.addTask}>
               <input ref={(a) => this._inputElement = a}
@@ -81,6 +91,7 @@ class TaskListContainer extends Component {
             </form>
           </div>
           </div>
+          <div className="leftPane"><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} editTask={this.editTask} /></div>
         </div>
       </div>
     );
