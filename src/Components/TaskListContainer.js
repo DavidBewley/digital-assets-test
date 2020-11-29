@@ -10,11 +10,13 @@ class TaskListContainer extends Component {
       tasks: [{
         key: '1606661929799',
         text: 'Call Plumber',
-        complete: 'false'
+        complete: 'false',
+        editMode: 'false'
       }]
     };
 
     this.addTask = this.addTask.bind(this);
+    this.editTask = this.editTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.markTaskAsComplete = this.markTaskAsComplete.bind(this);
   }
@@ -24,7 +26,8 @@ class TaskListContainer extends Component {
       var newTask = {
         text: this._inputElement.value,
         key: Date.now(),
-        complete: false
+        complete: false,
+        editMode: false
       };
 
       this.setState((prevState) => {
@@ -68,12 +71,21 @@ class TaskListContainer extends Component {
     });
   }
 
+  enterEditMode(key) {
+    var taskList = this.state.tasks;
+
+    taskList.find(t => t.key === key).editMode = true;
+    this.setState({
+      tasks: taskList
+    });
+  }
+
   render() {
     return (
       <div className="TaskListContainer">
         <h1>Todays Tasks</h1>
         <div className="splitScreen">
-          <div className="leftPane"><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} /></div>
+          <div className="leftPane"><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} editTask={this.editTask} /></div>
           <div className="rightPane"><div className="AddTask">
             <form onSubmit={this.addTask}>
               <input ref={(a) => this._inputElement = a}
