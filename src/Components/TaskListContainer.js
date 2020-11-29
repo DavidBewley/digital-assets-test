@@ -25,7 +25,7 @@ class TaskListContainer extends Component {
     this.editTask = this.editTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.markTaskAsComplete = this.markTaskAsComplete.bind(this);
-    this.putTaskInEditMode = this.putTaskInEditMode.bind(this);
+    this.toggleTaskInEditMode = this.toggleTaskInEditMode.bind(this);
   }
 
   addTask(e) {
@@ -78,7 +78,7 @@ class TaskListContainer extends Component {
     });
   }
 
-  putTaskInEditMode(key) {
+  toggleTaskInEditMode(key) {
     var taskList = this.state.tasks;
 
     var newState = !taskList.find(t => t.key === key).editMode;
@@ -101,7 +101,7 @@ class TaskListContainer extends Component {
           </form>
         </div>
         </div>
-        <div><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} editTask={this.editTask} putTaskInEditMode={this.putTaskInEditMode}/></div>
+        <div><TaskList tasks={this.state.tasks} delete={this.deleteTask} markAsComplete={this.markTaskAsComplete} editTask={this.editTask} toggleTaskInEditMode={this.toggleTaskInEditMode}/></div>
       </div>
     );
   }

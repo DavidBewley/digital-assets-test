@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FaCheck } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
+import { BsFillTrashFill } from "react-icons/bs";
 import { BsFillDashCircleFill } from "react-icons/bs";
 
 import './Css/TaskList.css';
@@ -21,13 +21,13 @@ class TaskList extends Component {
     this.props.markAsComplete(key);
   }
 
-  putTaskInEditMode(key) {
-    this.props.putTaskInEditMode(key);
+  toggleTaskInEditMode(key) {
+    this.props.toggleTaskInEditMode(key);
   }
 
   handleSubmit = (event) => {
-    event.preventDefault()
-    this.props.editTask(event.target[0].name, event.target[0].value)
+    event.preventDefault();
+    this.props.editTask(event.target[0].name, event.target[0].value);
   }
 
   createTasks(task) {
@@ -41,7 +41,7 @@ class TaskList extends Component {
           <tr>
             <td className="status" >{statusBox}</td>
             <td className="task-text" >{task.text}</td>
-            <td className="buttons" >{toggle} <FaEdit className="icon" size={28} onClick={() => this.putTaskInEditMode(task.key)}/> <MdDeleteForever className="icon" size={28} onClick={() => this.delete(task.key)} /></td>
+            <td className="buttons" >{toggle} <span className="icon-container"><FaEdit className="icon edit-icon" onClick={() => this.toggleTaskInEditMode(task.key)}/></span> <span className="icon-container"><BsFillTrashFill className="icon delete-icon" onClick={() => this.delete(task.key)} /></span></td>
           </tr>
         </tbody>
       </table>
@@ -60,9 +60,9 @@ class TaskList extends Component {
 
   renderCompleteIcon(task) {
     if (task.complete) {
-      return <BsFillDashCircleFill className="icon" size={28} onClick={() => this.markAsComplete(task.key)} />
+      return <span className="icon-container"><BsFillDashCircleFill className="icon untick-icon" onClick={() => this.markAsComplete(task.key)} /></span>
     }
-    return <FaCheck className="icon" size={28} onClick={() => this.markAsComplete(task.key)} />
+    return <span className="icon-container"><FaCheck className="icon tick-icon" onClick={() => this.markAsComplete(task.key)} /></span>
   }
 
   renderEditMode(task){
